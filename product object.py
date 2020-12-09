@@ -8,4 +8,8 @@ class Food(Product):
         super.__init__(self, name, company)
         self.ingredients = []
 
-    def add_ingredients
+    def add_ingredient(self, ingredient):
+        if not ingredient in self.ingredients:
+            self.ingredients.append(ingredient)
+
+

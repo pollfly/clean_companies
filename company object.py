@@ -18,3 +18,4 @@ class Company:
 
 
 
+print(type([1,2,3]))
