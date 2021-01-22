@@ -21,9 +21,7 @@ def about():
 
 @app.route("/<myCompany>")
 def company_check(myCompany):
-    return lookup_comp(myCompany)
-
-
+    return lookup_comp(myCompany) + "<br> <form action='/'> <input type='submit' value='Return to Home'/></form>"
 
 if __name__ == "__main__":
     app.run(debug=True)
