@@ -59,7 +59,7 @@ def lookup_comp(comp=None):
                 stringify += f"<form action='/{item[0]}'> <input type='submit' value={item[0]}> </form>"
                 #stringify += f'<br>{number} - {item[0]}\n'
             if items:
-                return f"<h1>Did you mean one of these companies?<h1/>{stringify}"
+                return f"<h1>Do you mean one of these companies?<h1/>{stringify}"
 
                 # name = input(f"""did you mean one of these companies? \n{stringify}.
 
