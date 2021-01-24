@@ -1,9 +1,9 @@
 import sqlite3
 
+
 conn1 = sqlite3.connect('../company.db')
 
 c = conn1.cursor()
-
 # c.execute("""CREATE TABLE companies (
 #         name text,
 #         city_founded text,
@@ -18,14 +18,7 @@ c = conn1.cursor()
 #                   ('NIKE', 'New York', '1950', 'shoes', 'child labor')]
 #
 # c.executemany("INSERT INTO companies VALUES (?,?,?,?,?)", many_companies)
-
-c.execute("SELECT name FROM companies")
-
-x = c.fetchall()
-for y in x:
-    print(y[0])
 conn1.commit()
 
-# close our connection
-conn1.close()
 
+conn1.close()
