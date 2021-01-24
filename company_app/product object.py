@@ -24,6 +24,3 @@ class Textile(Product):
     def add_ingredient(self, materials):
         if not materials in self.materials:
             self.materials.append(materials)
-
-
-c = "he"
