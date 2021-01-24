@@ -1,4 +1,4 @@
-from company_app.flask_practice import Flask
+from company_app.flask_app_server import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
