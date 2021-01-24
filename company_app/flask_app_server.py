@@ -1,7 +1,6 @@
-from flask import Flask, redirect, url_for, request, redirect, render_template
 from company_database_functions import lookup_comp
-from flask_wtf import FlaskForm
-from wtforms import StringField, validators
+from flask import Flask, redirect, render_template, request, url_for
+
 
 app = Flask(__name__)
 
@@ -17,7 +16,8 @@ def home():
 
 @app.route("/<myCompany>")
 def company_check(myCompany):
-    return lookup_comp(myCompany) + "<br/> <form action='/'> <input type='submit' value='Return to Home Page'/></form>"
+    return render_template("results.html", message=lookup_comp(myCompany))
+
 
 if __name__ == "__main__":
     app.run(debug=True)

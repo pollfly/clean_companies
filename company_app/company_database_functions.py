@@ -12,7 +12,6 @@ def show_all():
     conn1.close()
 
 
-# Add a new record to the table
 def add_company(name, location, year, products, history):
     conn1 = sqlite3.connect('../company.db')
     c = conn1.cursor()
@@ -21,7 +20,6 @@ def add_company(name, location, year, products, history):
     conn1.close()
 
 
-# Delete a record from the Table
 def delete_one(id):
     conn1 = sqlite3.connect('../company.db')
     c = conn1.cursor()
@@ -60,4 +58,4 @@ def lookup_comp(comp=None):
             for item in items:
                 stringify += f"<form action='/{item[0]}'> <input type='submit' value={item[0]}> </form>"
             if items:
-                return f"<h1>Do you mean one of these companies?<h1/>{stringify}"
+                return f"<h1>Do you mean one of these companies?<h1/>{stringify}<hr/>"
