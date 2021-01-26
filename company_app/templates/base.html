@@ -10,13 +10,28 @@
      <style>
          body{font-family: "sans-serif";
              background-color: aliceblue;
+         }
+         topnav {
+             background-color: lightblue;
+             overflow: hidden;
+}
 
-     }
+         table, th, td {
+             border: 1px solid black;
+         }
+
+         td, th {
+             padding: 0.5rem;
+
+         }
+
      </style>
  <body>
- <div id="navbar">
-    <h6>Company Checker <a href="/">Home</a></h6>
- </div>
+ <div class="topnav">
+     <a class="active" href="/">Home</a> ||
+     <a href="/company_table">Company Table</a>
+
+ </div><br>
  {% block content %}{% endblock %}
 
     </body>
