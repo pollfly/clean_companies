@@ -51,8 +51,6 @@ def lookup_company(comp=None):
             letters = comp[:2]
             c.execute("SELECT name FROM companies WHERE name LIKE (?)", (f'{letters}%',))
             items = c.fetchall()
-            # P.Z: here you are checking "if not items", 5 lines after you are checking "if items" but items is not
-            # changed. Maybe you can use if-else?
             if not items:
                 return "<h2>Company not found</h2> <br> "
             stringify = ""
@@ -60,5 +58,4 @@ def lookup_company(comp=None):
             for item in list_items:
                 item[0] = item[0].strip()
                 stringify += f"<form action='/{item[0]}'> <input type='submit' value='{item[0]}'> </form>"
-            if items:
                 return f"<h1>Do you mean one of these companies?<h1/>{stringify}<hr/>"

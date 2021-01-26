@@ -30,8 +30,8 @@ data = list(c.fetchall())
 list_data = [list(i) for i in data]
 for row in list_data:
     row[0] = f"<a href='/{row[0]}'>{row[0]}</a>"
-
 conn1.close()
+
 
 @app.route("/company_table")
 def table():

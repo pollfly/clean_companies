@@ -17,6 +17,7 @@ c = conn1.cursor()
 #         history text)
 #         """)
 
+
 def one_time_database_dump():
     url = "https://www.business-humanrights.org/en/companies/"
     response = requests.get(url)
