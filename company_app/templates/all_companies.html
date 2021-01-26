@@ -1,21 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Company Table</h1>
-    <table>
-        <tr>
-            {% for header in headings %}
-            <th>{{ header }}</th>
-            {% endfor %}
-        </tr>
-        {% for row in data %}
-        <tr>
-            {% for cell in row %}
-            <td>{{ cell|safe }}</td>
-            {% endfor %}
-        </tr>
-        {% endfor %}
-
-    </table>
 {% endblock %}
 </body>
 </html>
