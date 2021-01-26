@@ -1,3 +1,4 @@
+# P.Z - If this "practice" dir is not related to the project, I would recommend to move it to a new repository so the project will be as clean as possible
 class Company:
     def __init__(self, comp_name, date_founded, country_of_origin, type_of_comp, human_rights_history=""):
         self.name = comp_name

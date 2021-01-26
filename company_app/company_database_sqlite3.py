@@ -1,6 +1,6 @@
 import sqlite3
 
-
+# P.Z: I guess this file is redundant, just move it to a different repository or delete it.  
 conn1 = sqlite3.connect('../company.db')
 
 c = conn1.cursor()
