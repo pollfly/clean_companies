@@ -27,7 +27,7 @@ def one_time_database_dump():
     link = 'https://www.business-humanrights.org'
     num = 1
     for company, comp_link in dictionary.items():
-        company_info = [company]
+        company_info = [company.strip()]
         if comp_link:
             url = link+comp_link
             response = requests.get(url)

@@ -39,23 +39,25 @@ def lookup_company(comp=None):
             history = history.replace("\n", "<br>")
             print(history)
             return f"""
-            <h1> <strong>Company:</strong><big style="color: blue"> {comp}</big></h1> 
+            <h1> <b>Company:</b><big style="color: blue"> {comp}</big></h1> 
             <hr/>
-            <p> <strong>Location:</strong> {location} </p>
-            <p> <strong>Products:</strong> {products} </p>
-            <p> <strong>History:</strong> {history} </p>"""
+            <p> <big><b>Location:</b></big> {location} </p>
+            <p> <big><b>Products:</b></big> {products} </p>
+            <p> <big><b>Human Rights Topics:</b></big><br> {history} </p>"""
     else:
         if len(comp) < 2:
             return "<h1>Company not found</h1> <br> "
         else:
             letters = comp[:2]
-            c.execute("SELECT name FROM companies WHERE name LIKE (?)", (f'{letters}%',))
+            c.execute("SELECT name FROM companies WHERE name LIKE (?) or (?)", (f"%{comp}%", f"{letters}%"))
             items = c.fetchall()
             if not items:
                 return "<h2>Company not found</h2> <br> "
-            stringify = ""
-            list_items = [list(i) for i in items]
-            for item in list_items:
-                item[0] = item[0].strip()
-                stringify += f"<form action='/{item[0]}'> <input type='submit' value='{item[0]}'> </form>"
-                return f"<h1>Do you mean one of these companies?<h1/>{stringify}<hr/>"
+            else:
+                stringify = ""
+                list_items = [list(i) for i in items]
+                for item in list_items:
+                    item[0] = item[0].strip()
+                    stringify += f"""<form action="/{item[0]}"> <input type="submit" value="{item[0]}"> </form>"""
+                if items:
+                    return f"<h1>Do you mean one of these companies?<h1/>{stringify}<hr/>"

@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <main style="text-align: center">
-            <h1> Check the Human Rights History of a Company! </h1>
-            <form action="#", method="POST">
-                <h2> Enter a Company Name: <br> </h2>
-                <p><input type="text" name="company"></p>
-                <p><input type="submit" value="Submit"></p>
-            </form>
-        </main>
+
+<main style="text-align: center">
+    <h1> Check the Human Rights History of a Company! </h1><br/>
+        <form action="#", method="POST", style="font-size: larger">
+            <p style="font-size: 25px; color: darkred"><b> Enter a Company Name: </b></p>
+                <div id="searchbar"><input type="text" name="company"></div><br>
+                <div id="submit"><input type="submit" value="Submit"></div>
+        </form>
+</main>
 </body>
 </html>
 {% endblock %}

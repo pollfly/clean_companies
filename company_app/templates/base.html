@@ -6,12 +6,12 @@
         Check the human rights history of companies before making your purchases!">
         <!--link rel="stylesheet" href='static/style.css'-->
         <title>Human Rights Company Checker</title>
-    </head>
+     </head>
      <style>
          body{font-family: "sans-serif";
              background-color: aliceblue;
          }
-         topnav {
+         .header {
              background-color: lightblue;
              overflow: hidden;
 }
@@ -25,12 +25,25 @@
 
          }
 
+         main {
+             margin-top: 50px;
+             margin-bottom: 100px;
+             margin-right: 150px;
+             margin-left: 70px;
+         }
+
+         .header {
+             background-color: lightblue;
+             padding: 20px;
+             text-align: left;
+         }
+
      </style>
  <body>
- <div class="topnav">
+
+ <div class="header">
      <a class="active" href="/">Home</a> ||
      <a href="/company_table">Company Table</a>
-
  </div><br>
  {% block content %}{% endblock %}
 
