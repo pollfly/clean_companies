@@ -4,13 +4,10 @@ from time import sleep
 from bs4 import BeautifulSoup
 import sqlite3
 from company_database_functions import add_company
+import config
 
 
-conn1 = sqlite3.connect('../company.db')
-
-c = conn1.cursor()
-
-# c.execute("""CREATE TABLE companies (
+# config.c.execute("""CREATE TABLE companies (
 #         name text,
 #         country_founded text,
 #         products text,
@@ -51,21 +48,21 @@ def one_time_database_dump():
                 parent2 = icon.find_parent()
                 products = parent2.findChild('div', class_="list-item__content")
                 if products:
-                    products = products.text.strip().replace("\n","").replace("  ", "")
+                    products = products.text.strip().replace("\n", "").replace("  ", "")
                     company_info.append(products)
             else:
-                for icon2 in icons:
-                    if "information" in icon2.svg.use.get('xlink:href'):
+                for icon in icons:
+                    if "information" in icon.svg.use.get('xlink:href'):
                         break
-                if "information" in icon2.svg.use.get('xlink:href'):
-                    parent = icon2.find_parent()
+                if "information" in icon.svg.use.get('xlink:href'):
+                    parent = icon.find_parent()
                     products = parent.findChild('div', class_="list-item__content")
                     if products:
                         products = products.text.strip().replace("\n", "").replace("  ", "")
                         company_info.append(products)
                 else:
                     company_info.append("To be added")
-        # history
+
             history_list = soup.find("div", class_="company__top-issues")
             if history_list:
                 history = history_list.find_all('h4')
@@ -80,7 +77,9 @@ def one_time_database_dump():
             num += 1
             yield company_info
 
+
 # for company in one_time_database_dump():
 #     add_company(*company)
 
-conn1.close()
+
+config.conn1.close()

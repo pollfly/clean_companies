@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-<main>
+
 {{message|safe}}
-<br/> <form action='/'> <input type='submit' value='Return to Home Page'/></form>
-</main>
+
+<br/>
+
+    <form action='/'>
+        <input type='submit' value='Return to Home Page'/>
+    </form>
+
+
 {% endblock %}
