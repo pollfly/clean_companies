@@ -28,7 +28,6 @@ def get_all_companies_info(comp_id=False, name=True, country_founded=True, produ
 
 
 def add_company(name, location, products, history):
-    # connect/cursor into function, so not copy code
     connect_to_database()
     config.c.execute("INSERT INTO companies VALUES (?,?,?,?)", (name, location, products, history))
     commit_close_database_connection()

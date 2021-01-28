@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route("/", methods=["POST"])
 def home_post():
     comp = request.form["company"]
-    return redirect(url_for("company_check", myCompany=comp))
+    return redirect(url_for("company_check", my_company=comp))
 
 
 @app.route("/", methods=["GET"])
@@ -40,6 +40,11 @@ def table():
     headings = ("Company", "Location", "Products")
     return render_template("all_companies.html", headings=headings,
                            data=link_first_column((listify_alphabetize_company_info())))
+
+
+@app.route("/more_info")
+def more_info():
+    pass
 
 
 if __name__ == "__main__":
