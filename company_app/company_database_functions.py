@@ -35,7 +35,7 @@ def add_company(name, location, products, history):
 
 def delete_company(id_num):
     connect_to_database()
-    config.c.execute("DELETE FROM companies WHERE rowid = (?)", id_num)
+    config.c.execute("DELETE FROM companies WHERE rowid = (?)", (id_num,))
     commit_close_database_connection()
 
 
