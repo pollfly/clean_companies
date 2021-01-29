@@ -35,8 +35,15 @@ def add_company(name, location, products, history):
 
 def delete_company(id_num):
     connect_to_database()
-    config.c.execute("DELETE FROM companies WHERE rowid = (?)", id_num)
+    config.c.execute("DELETE FROM companies WHERE rowid = (?)", (id_num,))
     commit_close_database_connection()
+
+
+def get_comp_rowid(company_name):
+    connect_to_database()
+    config.c.execute("SELECT rowid, name FROM companies WHERE name = (?) ", (company_name,))
+    items = config.c.fetchall()
+    return items
 
 
 def lookup_company(company=None):

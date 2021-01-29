@@ -19,14 +19,14 @@ def one_time_database_dump():
     url = "https://www.business-humanrights.org/en/companies/"
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
-    option_list = soup.find_all('option')
-    dictionary = {i.text: i.get('value') for i in option_list}
+    company_option_list = soup.find_all('option')
+    comp_link_dictionary = {i.text: i.get('value') for i in company_option_list}
     link = 'https://www.business-humanrights.org'
     num = 1
-    for company, comp_link in dictionary.items():
+    for company, comp_link in comp_link_dictionary.items():
         company_info = [company.strip()]
         if comp_link:
-            url = link+comp_link
+            url = link + comp_link
             response = requests.get(url)
             soup = BeautifulSoup(response.text, "html.parser")
             sleep(randint(1, 5))
