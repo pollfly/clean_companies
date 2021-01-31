@@ -5,7 +5,7 @@ body {
 
 
 .header {
-    background-color: lightblue;
+    background-color: aliceblue;
     overflow: hidden;
 }
 
@@ -28,4 +28,13 @@ main {
     background-color: lightblue;
     padding: 20px;
     text-align: left;
+}
+
+#logo {
+    width: 200px;
+    height: 200px;
+}
+
+#logo2 {
+    vertical-align: middle;
 }
