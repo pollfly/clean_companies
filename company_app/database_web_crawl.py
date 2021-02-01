@@ -14,6 +14,17 @@ import config
 #         history text)
 #         """)
 
+def icon_finder(icon_list, icon_name, division_type, class_name=None):
+    for icon in icon_list:
+        if icon_name in icon.svg.use.get('xlink:href'):
+            break
+    if icon_name in icon.svg.use.get('xlink:href'):
+        parent = icon.find_parent()
+        wanted_info = parent.findChild(division_type, class_=class_name)
+        return wanted_info.text.strip().replace("  ", "")
+    else:
+        return False
+
 
 def one_time_database_dump():
     url = "https://www.business-humanrights.org/en/companies/"
@@ -31,38 +42,20 @@ def one_time_database_dump():
             soup = BeautifulSoup(response.text, "html.parser")
             sleep(randint(1, 5))
             icons = soup.find_all("div", class_="list-item__icon")
-            for icon in icons:
-                if "map-pin" in icon.svg.use.get('xlink:href'):
-                    break
-            if "map-pin" in icon.svg.use.get('xlink:href'):
-                parent = icon.find_parent()
-                country = parent.findChild('p').text
+            country = icon_finder(icons, "map-pin", "p")
+            if country:
                 company_info.append(country)
             else:
-                company_info.append("To be added")
-
-            for icon in icons:
-                if "tick" in icon.svg.use.get('xlink:href'):
-                    break
-            if "tick" in icon.svg.use.get('xlink:href'):
-                parent2 = icon.find_parent()
-                products = parent2.findChild('div', class_="list-item__content")
-                if products:
-                    products = products.text.strip().replace("\n", "").replace("  ", "")
-                    company_info.append(products)
+                company_info.append("to be added")
+            products = icon_finder(icons, "tick", 'div', "list-item__content")
+            if products:
+                company_info.append(products)
             else:
-                for icon in icons:
-                    if "information" in icon.svg.use.get('xlink:href'):
-                        break
-                if "information" in icon.svg.use.get('xlink:href'):
-                    parent = icon.find_parent()
-                    products = parent.findChild('div', class_="list-item__content")
-                    if products:
-                        products = products.text.strip().replace("\n", "").replace("  ", "")
-                        company_info.append(products)
+                products2 = icon_finder(icons, "information", "p")
+                if products2:
+                    company_info.append(products2)
                 else:
                     company_info.append("To be added")
-
             history_list = soup.find("div", class_="company__top-issues")
             if history_list:
                 history = history_list.find_all('h4')
@@ -77,9 +70,5 @@ def one_time_database_dump():
             num += 1
             yield company_info
 
-
 # for company in one_time_database_dump():
 #     add_company(*company)
-
-
-config.conn1.close()
