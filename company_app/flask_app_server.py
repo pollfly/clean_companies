@@ -1,8 +1,8 @@
 from company_database_functions import lookup_company
 from flask import Flask, redirect, render_template, request, url_for
-import sqlite3
-import config
 from company_database_functions import get_all_companies_info
+
+
 app = Flask(__name__)
 
 
@@ -39,12 +39,7 @@ def link_first_column(company_data_list):
 def table():
     headings = ("Company", "Location", "Products")
     return render_template("all_companies.html", headings=headings,
-                           data=link_first_column((listify_alphabetize_company_info())))
-
-
-@app.route("/more_info")
-def more_info():
-    pass
+                           data=link_first_column(listify_alphabetize_company_info()))
 
 
 if __name__ == "__main__":
