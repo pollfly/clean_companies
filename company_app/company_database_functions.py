@@ -46,11 +46,11 @@ def get_comp_rowid(company_name):
     config.conn1.close()
     return items
 
-
 def lookup_company(company=None):
     if not company:
         company = input("Search for a company: ")
     connect_to_database()
+    company = company.strip()
     config.cursor.execute("SELECT * FROM companies WHERE name = (?) or name = (?) or name = (?) or name = (?)",
                           (company, company.upper(), company.lower(), company.title()))
     items = config.cursor.fetchall()
@@ -67,15 +67,16 @@ def lookup_company(company=None):
         if len(company) < 2:
             return "<h1>Company not found</h1> <br> "
         else:
-            config.cursor.execute("SELECT name FROM companies WHERE name LIKE (?) ORDER BY name ASC", (f"%{company}%",))
+            config.cursor.execute("SELECT name FROM companies WHERE name LIKE (?) or name LIKE (?) ORDER BY name ASC",
+                                  (f"%{company}%", f"{company[:2]}%"))
             items = config.cursor.fetchall()
             if not items:
                 return "<h2>Company not found</h2> <br> "
             else:
-                stringify = ""
+                stringify_and_linkify = ""
                 list_items = [list(i) for i in items]
                 for item in list_items:
                     item[0] = item[0].strip()
-                    stringify += f"""<form action="/{item[0]}"> <input type="submit" value="{item[0]}"> </form>"""
+                    stringify_and_linkify += f"""<form action="/{item[0]}"> <input type="submit" value="{item[0]}"> </form>"""
                 if items:
-                    return f"<h1>Do you mean one of these companies?<h1/>{stringify}"
+                    return f"<h1>Do you mean one of these companies?<h1/>{stringify_and_linkify}"
