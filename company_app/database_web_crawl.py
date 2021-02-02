@@ -2,19 +2,10 @@ from random import randint
 import requests
 from time import sleep
 from bs4 import BeautifulSoup
-import sqlite3
 from company_database_functions import add_company
-import config
 
 
-# config.c.execute("""CREATE TABLE companies (
-#         name text,
-#         country_founded text,
-#         products text,
-#         history text)
-#         """)
-
-def icon_finder(icon_list, icon_name, division_type, class_name=None):
+def comp_info_finder_by_icon(icon_list, icon_name, division_type, class_name=None):
     for icon in icon_list:
         if icon_name in icon.svg.use.get('xlink:href'):
             break
@@ -42,18 +33,18 @@ def one_time_database_dump():
             soup = BeautifulSoup(response.text, "html.parser")
             sleep(randint(1, 5))
             icons = soup.find_all("div", class_="list-item__icon")
-            country = icon_finder(icons, "map-pin", "p")
+            country = comp_info_finder_by_icon(icons, "map-pin", "p")
             if country:
                 company_info.append(country)
             else:
                 company_info.append("to be added")
-            products = icon_finder(icons, "tick", 'div', "list-item__content")
+            products = comp_info_finder_by_icon(icons, "tick", 'div', "list-item__content")
             if products:
                 company_info.append(products)
             else:
-                products2 = icon_finder(icons, "information", "p")
-                if products2:
-                    company_info.append(products2)
+                products = comp_info_finder_by_icon(icons, "information", "p")
+                if products:
+                    company_info.append(products)
                 else:
                     company_info.append("To be added")
             history_list = soup.find("div", class_="company__top-issues")
@@ -69,6 +60,7 @@ def one_time_database_dump():
             print(f'{num} companies done')
             num += 1
             yield company_info
+
 
 # for company in one_time_database_dump():
 #     add_company(*company)

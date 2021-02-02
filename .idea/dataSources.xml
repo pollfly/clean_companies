@@ -8,13 +8,6 @@
       <jdbc-url>jdbc:sqlite:C:\Users\revit\PycharmProjects\bigproject\db.company_database</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="database practice.py" uuid="55cfdffb-ebee-452b-9e8c-62051ffc7b10">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/database practice.py</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
     <data-source source="LOCAL" name="company" uuid="4189cd52-8bac-473d-8209-9e951394a21c">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>

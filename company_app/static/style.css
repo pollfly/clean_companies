@@ -5,9 +5,12 @@ body {
 
 
 .header {
-    background-color: aliceblue;
+    background-color: lightblue;
     overflow: hidden;
+    padding: 20px;
+    text-align: left;
 }
+
 
 table, th, td {
     border: 1px solid black;
@@ -22,12 +25,6 @@ main {
     margin-bottom: 100px;
     margin-right: 150px;
     margin-left: 70px;
-}
-
-.header {
-    background-color: lightblue;
-    padding: 20px;
-    text-align: left;
 }
 
 #logo {
