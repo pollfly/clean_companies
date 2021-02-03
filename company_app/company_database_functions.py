@@ -65,7 +65,8 @@ def lookup_company(company=None):
             <p> <big><b>Human Rights Topics:</b></big><br> {history} </p>"""
     else:
         if len(company) < 2:
-            return "<h1>Company not found</h1> <br> "
+            return "<h1>Company not found</h1> " \
+                   "<big>Please enter at least two characters in your search.</big><br>"
         else:
             config.cursor.execute("SELECT name FROM companies WHERE name LIKE (?) or name LIKE (?) ORDER BY name ASC",
                                   (f"%{company}%", f"{company[:2]}%"))
